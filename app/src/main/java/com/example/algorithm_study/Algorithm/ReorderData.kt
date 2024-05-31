@@ -10,12 +10,22 @@ fun main() {
 }
 
 class Solution3 {
-    fun reorderLogFiles(logs: Array<String>): List<String> {
-//        return logs.sortedWith(compareBy { it.split(" ")[1] })
-        return logs.sortedWith(java.util.Comparator { o1, o2 ->
-            val sub1 = o1.substringAfter(' ')
-            val sub2 = o2.substringAfter(' ')
-            sub1.compareTo(sub2)
-        })
+    fun reorderLogFiles(logs: Array<String>): Array<String> {
+        return logs.sortedWith(Comparator { o1, o2 ->
+            val sub1 = o1.substringAfter(" ")
+            val sub2 = o2.substringAfter(" ")
+
+            when {
+                sub1[0].isLetter() && sub2[0].isLetter() ->
+                    return@Comparator sub1.compareTo(sub2)
+                sub1[0].isDigit() && sub2[0].isDigit() ->
+                    return@Comparator sub1.compareTo(sub2)
+                sub1[0].isLetter() && sub2[0].isDigit() ->
+                    return@Comparator -1
+                o1 == o2 ->
+                    return@Comparator o1.compareTo(o2)
+                else -> 0
+            }
+        }).toTypedArray()
     }
 }
