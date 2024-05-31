@@ -16,15 +16,15 @@ class Solution3 {
             val sub2 = o2.substringAfter(" ")
 
             when {
-                sub1[0].isLetter() && sub2[0].isLetter() ->
-                    return@Comparator sub1.compareTo(sub2)
                 sub1[0].isDigit() && sub2[0].isDigit() ->
-                    return@Comparator sub1.compareTo(sub2)
+                    return@Comparator 0
+                sub1 == sub2 ->
+                    return@Comparator o1.compareTo(o2)
+                sub1[0].isDigit() && sub2[0].isLetter() ->
+                    return@Comparator 1
                 sub1[0].isLetter() && sub2[0].isDigit() ->
                     return@Comparator -1
-                o1 == o2 ->
-                    return@Comparator o1.compareTo(o2)
-                else -> 0
+                else -> return@Comparator sub1.compareTo(sub2)
             }
         }).toTypedArray()
     }
