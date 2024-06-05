@@ -16,7 +16,6 @@ class Solution4 {
     fun mostCommonWord(paragraph: String, banned: Array<String>): String {
         val para = paragraph.split(" ", ",")
         val para2 = paragraph.split("[^a-zA-Z0-9\n]".toRegex())
-        val para2 = paragraph.split("".toRegex())
 
         val paraList = ""
 //        for (i in para.indices) {
