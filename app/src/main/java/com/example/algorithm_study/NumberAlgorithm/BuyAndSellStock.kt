@@ -15,53 +15,19 @@ fun main() {
 class Solution2 {
     fun maxProfit(prices: IntArray): Int {
         var min = prices[0]
-        var max1 = 0
-        var ind = 0
-//        for (i in prices.indices){
-//            for (j in i..prices.size-1) {
-//                if (prices[i] < prices[j]) {
-//                    if (prices[i] < prices[j] && min >= prices[i]) {
-//                        min = prices[i]
-//                    } else if (prices[i] > prices[j] && min >= prices[j]) {
-//                        min = prices[j]
-//                    }
-//                    if (prices[i] < prices[j] && max1 <= prices[j]) {
-//                        max1 = prices[j]
-//                    }
-//                }
-//            }
-//        }
-//        return max1 - min
-
-//        var minprice = prices[0]
-//        var maxprice = 0
-//        var result = 0
-//
-//        for (i in prices.indices) {
-//            if (prices[i] < minprice) {
-//                minprice = prices[i]
-//                maxprice = prices[i]
-//            }
-//            if (prices[i] > maxprice) {
-//                maxprice = prices[i]
-//            }
-//            result = max(maxprice - minprice, result)
-//        }
-//        return result
+        var max = 0
+        var result = 0
 
         for (i in prices.indices) {
-            if (min > prices[i] && i > ind) {
+            if (prices[i] < min) {
                 min = prices[i]
-                max1 = prices[i]
-                ind = i
-                println("min, max, ind $min, $max1, $ind")
+                max = prices[i]
             }
-            if (max1 < prices[i]) {
-                max1 = prices[i]
-                println("max $max1")
+            if (prices[i] > max) {
+                max = prices[i]
             }
-
+            result = max(max - min, result)
         }
-        return max1 - min
+        return result
     }
 }
